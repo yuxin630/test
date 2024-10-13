@@ -5,9 +5,14 @@
     display: block;
 }
 #restaurant-info{
-    padding: 5px;
+    padding: 1rem 1rem;
     border-radius:15px;
-    background-color: rgba(240, 240, 240, 0.6);
+    margin-top: .5rem;
+    background-color:  #fff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .15);
+}
+#toggleVoteButton{
+    border: none;
 }
 .nav-button {
     margin: 10px;
@@ -159,12 +164,12 @@ svg{
 }
 
 .button-container button {
-    max-width:30%;
+    max-width:40%;
     margin: 2px 5px;
     /* width: 50px; 默认宽度 */
     padding: 5px;
     background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: width 0.3s, background-color 0.3s, color 0.3s; /* 增加宽度的平滑过渡 */
@@ -190,6 +195,10 @@ svg{
     max-width: none; /* 防止宽度被限制 
     z-index: 1; /* 确保悬停时按钮在其他元素上方 
 }*/
+
+.restaurant-button{
+    border: none;
+}
 
 .toggle-container {
     display: flex;
@@ -234,7 +243,7 @@ svg{
 .upper-section{
     margin: 10px 0;
     border-radius:15px;
-    background-color: #f0f0f0;
+    background-color: rgba(240, 240, 240, 0.6);
 }
 .middle-section{
     display: flex;
@@ -245,11 +254,11 @@ svg{
 .middle-section1{
     margin-bottom: 10px;
     border-radius:15px;
-    background-color: #f0f0f0;
+    background-color: rgba(240, 240, 240, 0.6);
 }
 .middle-section2{
     border-radius:15px;
-    background-color: #f0f0f0;
+    background-color: rgba(240, 240, 240, 0.6);
     padding-left: 45px;
     margin-bottom: 10px;
     display: flex;
@@ -265,26 +274,24 @@ svg{
     z-index: 1000;
     border-radius: 20px;
     padding:10px 20px;
-    background-color: white;
+    background-color: rgba(198, 198, 198, 0.5);
     display: flex;
     flex-wrap: nowrap;
     margin: 0 5px 0 0;
     justify-content: space-between;
     position: fixed; /* 修改为fixed */
     bottom: 5; /* 固定在视窗底部 */
-    width: -webkit-fill-available;
-    border: 2px solid #555; /* 完整的边框语法 */
+    width: 330px;
     align-items: center;
     justify-content: center;
-    flex-direction: column-reverse
+    flex-direction: column-reverse;
 }
 .vote button{
     /*width: 25%;*/
     margin: 5px;
     /* width: 50px; 默认宽度 */
     padding: 5px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    background-color: #fff;
     border-radius: 5px;
     cursor: pointer;
     transition: width 0.3s, background-color 0.3s, color 0.3s; /* 增加宽度的平滑过渡 */

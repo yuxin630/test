@@ -122,7 +122,7 @@ body, html {
     margin: auto;
     display: block;
     width: 80%;
-    max-width: 700px;
+    max-width:100%;
     position: relative;
 }
 .modal-content img {
@@ -151,6 +151,7 @@ body, html {
 }
 h3 {
     margin: 10px;
+    margin-left: 0;
 }
 .price-range {
     margin-top: 10px;
@@ -315,8 +316,7 @@ h3 {
     background-color: #F8EDE3;
     border-radius: 15px;
     color: #3B3B3B;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 1.2rem;
     padding: 5px 15px;
     width: auto; /* 自适应宽度 */
     /* margin: 5px; */
@@ -328,6 +328,7 @@ h3 {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
+    margin-left: .5rem;
 }
 
 #shareButton {
@@ -336,7 +337,7 @@ h3 {
 
 .map-button:hover {
     background-color: #E0D4C2;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    box-shadow: rgba(186, 186, 186, 0.208) 0 8px 15px;
     transform: translateY(-2px);
 }
 
@@ -656,9 +657,10 @@ button {
     background-color: #F8EDE3;
     border-radius: 15px;
     color: #3B3B3B;
-    font-size: 12px;
+    font-size: .9rem;
     font-weight: 600;
     padding: 5px 15px;
+    height: 2rem;
     width: auto; /* 自适应宽度 */
     /* margin: 5px; */
     z-index: 1001; /* 确保按钮在地图的上方 */
@@ -677,7 +679,7 @@ button {
 
 .share-button:hover {
     background-color: #E0D4C2;
-    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    box-shadow:  rgba(186, 186, 186, 0.208) 0 5px 10px;
     transform: translateY(-2px);
 }
 

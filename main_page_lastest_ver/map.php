@@ -121,8 +121,9 @@ if (isset($_GET['restaurant_ids'])) {
         // 顏色映射
         let filterRestaurants=[]
         const sortedTimes = ['60', '90', '100', '120', '150', ''];
-        const colors = d3.scaleOrdinal(d3.schemeCategory10)
-                .domain(sortedTimes);
+        const colors = d3.scaleOrdinal()
+                .domain(sortedTimes)
+                .range(['#d6af99', '#a2cdab', '#7ea1dd', '#fdc85e', '#e67575', '#b295ab']);
         // 初始化地圖
     const map = L.map('map').setView([22.631386, 120.301951], 13);
     L.tileLayer('https://api.maptiler.com/maps/dataviz/{z}/{x}/{y}.png?key=nVkGoaPMkOqdVRLChAnz', {
@@ -489,9 +490,9 @@ function drawMinimap(data) {
             svg.append("circle")
                 .attr("cx", 30)  // 设为 SVG 的中心
                 .attr("cy", 30)
-                .attr("r", 25)   // 半径比实际标记圆圈大一些
+                .attr("r", 28)   // 半径比实际标记圆圈大一些
                 .attr("fill", backgroundColor)
-                .attr("opacity", 0.7);  // 半透明效果
+                .attr("opacity", 1);  // 半透明效果
 
             // 定义圆形遮罩
             svg.append("defs").append("clipPath")
@@ -636,81 +637,81 @@ function drawMinimap(data) {
             layerGroup: null
         }).addTo(map);
 
-        // 餐廳和捷運輕軌連線
-        fetch('../connect_sql/get_data_json.php')
-            .then(response => response.json())
-            .then(restaurants => {
-                fetch('../connect_sql/get_data_map_json.php')
-                    .then(response => response.json())
-                    .then(transportations => {
-                        const stationMap = {};
-                        transportations.forEach(station => {
-                            stationMap[station.name] = {
-                                lat: station.latitude,
-                                lng: station.longitude
-                            };
-                        });
+        // // 餐廳和捷運輕軌連線
+        // fetch('../connect_sql/get_data_json.php')
+        //     .then(response => response.json())
+        //     .then(restaurants => {
+        //         fetch('../connect_sql/get_data_map_json.php')
+        //             .then(response => response.json())
+        //             .then(transportations => {
+        //                 const stationMap = {};
+        //                 transportations.forEach(station => {
+        //                     stationMap[station.name] = {
+        //                         lat: station.latitude,
+        //                         lng: station.longitude
+        //                     };
+        //                 });
 
-                        const lineGroup = L.layerGroup().addTo(map);
+        //                 const lineGroup = L.layerGroup().addTo(map);
 
-                        restaurants.forEach(restaurant => {
-                            const restaurantLatLng = [restaurant.r_latitude, restaurant.r_longitude];
+        //                 restaurants.forEach(restaurant => {
+        //                     const restaurantLatLng = [restaurant.r_latitude, restaurant.r_longitude];
 
-                            let shortestDistance = Infinity;
-                            let shortestLine = null;
+        //                     let shortestDistance = Infinity;
+        //                     let shortestLine = null;
 
-                            if (restaurant.r_MRT) {
-                                const mrtStationName = restaurant.r_MRT.replace('站', '');
-                                const mrtStation = stationMap[mrtStationName];
-                                if (mrtStation) {
-                                    const mrtDistance = parseFloat(restaurant.r_MRT_dist_km);
-                                    if (mrtDistance < shortestDistance) {
-                                        shortestDistance = mrtDistance;
-                                        shortestLine = L.polyline([restaurantLatLng, [mrtStation.lat, mrtStation.lng]], {
-                                            color: 'blue'
-                                        });
-                                    }
-                                }
-                            }
+        //                     if (restaurant.r_MRT) {
+        //                         const mrtStationName = restaurant.r_MRT.replace('站', '');
+        //                         const mrtStation = stationMap[mrtStationName];
+        //                         if (mrtStation) {
+        //                             const mrtDistance = parseFloat(restaurant.r_MRT_dist_km);
+        //                             if (mrtDistance < shortestDistance) {
+        //                                 shortestDistance = mrtDistance;
+        //                                 shortestLine = L.polyline([restaurantLatLng, [mrtStation.lat, mrtStation.lng]], {
+        //                                     color: 'blue'
+        //                                 });
+        //                             }
+        //                         }
+        //                     }
 
-                            if (restaurant.r_LRT) {
-                                const lrtStationName = restaurant.r_LRT;
-                                const lrtStation = stationMap[lrtStationName];
-                                if (lrtStation) {
-                                    const lrtDistance = parseFloat(restaurant.r_LRT_dist_km);
-                                    if (lrtDistance < shortestDistance) {
-                                        shortestDistance = lrtDistance;
-                                        shortestLine = L.polyline([restaurantLatLng, [lrtStation.lat, lrtStation.lng]], {
-                                            color: 'green'
-                                        });
-                                    }
-                                }
-                            }
+        //                     if (restaurant.r_LRT) {
+        //                         const lrtStationName = restaurant.r_LRT;
+        //                         const lrtStation = stationMap[lrtStationName];
+        //                         if (lrtStation) {
+        //                             const lrtDistance = parseFloat(restaurant.r_LRT_dist_km);
+        //                             if (lrtDistance < shortestDistance) {
+        //                                 shortestDistance = lrtDistance;
+        //                                 shortestLine = L.polyline([restaurantLatLng, [lrtStation.lat, lrtStation.lng]], {
+        //                                     color: 'green'
+        //                                 });
+        //                             }
+        //                         }
+        //                     }
 
-                            if (shortestLine) {
-                                lineGroup.addLayer(shortestLine);
-                            }
-                        });
+        //                     if (shortestLine) {
+        //                         lineGroup.addLayer(shortestLine);
+        //                     }
+        //                 });
 
-                        const zoomThreshold = 15;
+        //                 const zoomThreshold = 15;
 
-                        map.on('zoomend', () => {
-                            if (map.getZoom() >= zoomThreshold) {
-                                map.addLayer(lineGroup);
-                            } else {
-                                map.removeLayer(lineGroup);
-                            }
-                        });
+        //                 map.on('zoomend', () => {
+        //                     if (map.getZoom() >= zoomThreshold) {
+        //                         map.addLayer(lineGroup);
+        //                     } else {
+        //                         map.removeLayer(lineGroup);
+        //                     }
+        //                 });
 
-                        if (map.getZoom() >= zoomThreshold) {
-                            map.addLayer(lineGroup);
-                        } else {
-                            map.removeLayer(lineGroup);
-                        }
-                    })
-                    .catch(error => console.error('Error loading MRT/LRT data:', error));
-            })
-            .catch(error => console.error('Error loading restaurant data:', error));
+        //                 if (map.getZoom() >= zoomThreshold) {
+        //                     map.addLayer(lineGroup);
+        //                 } else {
+        //                     map.removeLayer(lineGroup);
+        //                 }
+        //             })
+        //             .catch(error => console.error('Error loading MRT/LRT data:', error));
+        //     })
+        //     .catch(error => console.error('Error loading restaurant data:', error));
     </script>
 </body>
 </html>

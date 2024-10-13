@@ -98,7 +98,7 @@ const generateAndDrawLevels = (levelsCount, sideCount) => {
 };
 
 // 餐廳顏色
-const color = d3.scaleOrdinal().range(["#FF70AE", "#85B4FF", "#FFCE47"]);
+const color = d3.scaleOrdinal().range(["#ffc6dfef", "#acccffea", "#ffeab0ee"]);
 
 // 繪製餐廳評分的函數
 const DrawRate = (levelsCount, sideCount, ratingsData, index) => {
@@ -218,7 +218,7 @@ import { highlightRestaurant, resetHighlight } from "../openTime/openTime.js";
 
 // 添加button到左上角的函數
 const addButtons = (restaurantNames) => {
-  const buttonColors = ["#FF70AE", "#85B4FF", "#FFCE47"];
+  const buttonColors = ["#ffc6dfef", "#acccffea", "#ffeab0ee"];
   const buttonGroup = svg_spider
     .append("g")
     .attr("transform", `translate(${margin},${margin})`);

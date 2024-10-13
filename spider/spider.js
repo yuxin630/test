@@ -102,7 +102,7 @@ const generateAndDrawLevels = (levelsCount, sideCount) => {
 };
 
 //餐廳顏色
-const color = d3.scaleOrdinal().range(["#FF70AE", "#85B4FF", "#FFCE47"]); //紅、藍、黃
+const color = d3.scaleOrdinal().range(["#ffc6dfef", "#acccffea", "#ffeab0ee"]); //紅、藍、黃
 // .range(["#84C1FF", "#96FED1", "#FFA5A0"]); //藍色、紫色、粉紅色
 
 //餐廳評分
@@ -237,7 +237,7 @@ import { highlightRestaurant, resetHighlight } from "../openTime/openTime.js";
 
 //添加button到左上角 要把button跟文字包在一起 動態才會正常
 const addButtons = (restaurantNames) => {
-  const buttonColors = ["#FF70AE", "#85B4FF", "#FFCE47"];
+  const buttonColors = ["#ffc6dfef", "#acccffea", "#ffeab0ee"];
   const buttonGroup = svg_spider
     .append("g")
     .attr("transform", `translate(${margin},${margin})`);

@@ -92,7 +92,6 @@ function dragElement(circles, x, y) {
             d.r_photo_env1,
             d.r_photo_env2,
             d.r_photo_env3,
-            d.r_photo_door,
           ];
           const foodPhotos = [
             d.r_photo_food1,
@@ -134,29 +133,29 @@ function dragElement(circles, x, y) {
           openingHoursContainer.className = "drag-opening-hours";
 
           // 確保 d.r_hours_periods 是字串，並嘗試解析成 JSON 陣列
-          let r_hours_periods = [];
+          let r_days = [];
           // 星期名稱對應
           const daysOfWeek = ["一", "二", "三", "四", "五", "六", "日"];
           try {
             // 假設 r_hours_periods 是一個字串，嘗試解析它
-            if (typeof d.r_hours_periods === "string") {
-              r_hours_periods = JSON.parse(
-                d.r_hours_periods.replace(/'/g, '"')
+            if (typeof d.days === "string") {
+              r_days = JSON.parse(
+                d.days.replace(/'/g, '"')
               ); // 將單引號替換成雙引號，然後解析 JSON
             }
           } catch (e) {
             console.error(
               "Failed to parse r_hours_periods:",
-              d.r_hours_periods,
+              d.days,
               e
             );
           }
 
           // 檢查是否成功解析為陣列
-          if (Array.isArray(r_hours_periods)) {
+          if (Array.isArray(r_days)) {
             // 使用解析後的資料進行處理
             const openDays = new Set();
-            r_hours_periods.forEach((hour) => {
+            r_days.forEach((hour) => {
               if (hour.status === "open") {
                 openDays.add(hour.day); // 紀錄有營業的天數
               }
@@ -188,7 +187,7 @@ function dragElement(circles, x, y) {
           } else {
             console.error(
               "r_hours_periods is not an array or is undefined",
-              d.r_hours_periods
+              d.r_days
             );
           }
 

@@ -1,11 +1,11 @@
-@font-face { 
+/* @font-face { 
     font-family: 'HunInn';
     src: url(https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.eot); 
     src: url(https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.eot?#iefix) format('embedded-opentype'), 
          url(https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.woff) format('woff'), 
          url(https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.ttf) format('truetype'), 
          url(https://cdn.jsdelivr.net/gh/marsnow/open-huninn-font@1.1/font/jf-openhuninn.svg#SealmemoryHeader) format('svg'); 
-}
+} */
 
 html, body {
     height: 100%;  /* 保证整个页面的高度为100% */
@@ -16,13 +16,15 @@ html, body {
     padding: 0;
     display: flex;
     width: 100%;
-    font-family: 'HunInn', sans-serif;
+    /* font-family: 'HunInn', sans-serif; */
 }
 
-
-
-*{
+/* *{
     font-family: 'HunInn', sans-serif;
+} */
+
+iframe{
+    border: 0;
 }
 
 .index-container{
@@ -76,7 +78,7 @@ html, body {
 
 .left-panel{
     /* background-color: rgba(252,184,53, .8); */
-    background-color: rgba(252,184,53, .8);
+    background-color: rgba(251, 177, 41, .716);
     float: left;
     width: 17vw;
     height: 100;
@@ -84,7 +86,7 @@ html, body {
     display: -webkit-flex;            
     justify-content: center;            
     align-items: center;   
-    font-size: .8rem;
+    font-size: .9rem;
     box-sizing: border-box;
     transition: width .8s ease;
     flex-direction: column;

@@ -92,7 +92,7 @@ function initializeReviews(reviewData) {
     .select(".upper-section")
     .append("svg")
     .attr("width", 600)
-    .attr("height", 220);
+    .attr("height", 230);
 
   let Fixed = false;
   const groups = svg
@@ -109,7 +109,7 @@ function initializeReviews(reviewData) {
           .selectAll(".link, .review-block, .detail-link, .detail-block")
           .remove();
         //標籤變化 - 背景
-        d3.select(this).select("rect").attr("fill", "#E0D4C2"); // 當滑鼠懸停時變深
+        d3.select(this).select("rect").attr("fill", "#94a89e"); // 當滑鼠懸停時變深
         // - 文字
         d3.select(this)
           .select("text")
@@ -123,7 +123,7 @@ function initializeReviews(reviewData) {
     .on("mouseout", function () {
       if (!Fixed) {
         svg.selectAll(`.detail-group`).remove();
-        d3.select(this).select("rect").attr("fill", "#F8EDE3"); // 恢復原背景顏色
+        d3.select(this).select("rect").attr("fill", "#c3d4cc"); // 恢復原背景顏色
         d3.select(this)
           .select("text")
           .attr("fill", "black") // 恢復原文字顏色
@@ -137,8 +137,7 @@ function initializeReviews(reviewData) {
       if (Fixed) {
         //要收起來時
         //全部標籤變正常
-        svg.selectAll(`.detail-group`).remove();
-        d3.selectAll(".block-group").select("rect").attr("fill", "#F8EDE3"); // 恢復原背景顏色
+        d3.selectAll(".block-group").select("rect").attr("fill", "#c3d4cc"); // 恢復原背景顏色
         d3.selectAll(".block-group")
           .select("text")
           .attr("fill", "black") // 恢復原文字顏色
@@ -161,7 +160,7 @@ function initializeReviews(reviewData) {
     .attr("height", 30)
     .attr("rx", 15) // 圓角矩形的半徑
     .attr("ry", 15)
-    .attr("fill", "#F8EDE3"); // 正確設定背景顏色
+    .attr("fill", "#c3d4cc"); // 正確設定背景顏色
 
   groups
     .append("text")
@@ -173,7 +172,8 @@ function initializeReviews(reviewData) {
     .attr("fill", "black")
     .text((d) => d.text);
 
-  const colors = ["#FF70AE", "#85B4FF", "#FFCE47"]; // 定義顏色陣列
+  const colors = ["#ffc6df", "#acccff", "#ffeab0"]; // 定義顏色陣列
+    
 
   // 一開始就顯示第一個類別的總評和第一家餐廳的評論細節
   const firstCategory = data[0];
@@ -193,9 +193,9 @@ function showReviews(svg, d, blockGroup) {
   svg.selectAll(".link, .review-block, .detail-link, .detail-block").remove();
 
   const blockX = 20;
-  const blockY = 20; // 這裡可以根據需要調整Y座標 一開始高度
+  const blockY = 30; // 這裡可以根據需要調整Y座標 一開始高度
   const blockWidth = 150;
-  const colors = ["#FF70AE", "#85B4FF", "#FFCE47"]; // 定義顏色陣列
+  const colors = ["#ffc6df", "#acccff", "#ffeab0"]; // 定義顏色陣列
 
   // 獲取總評區塊的位置，作為連線的起點
   const blockTransform = d3.select(blockGroup).attr("transform");
@@ -205,7 +205,7 @@ function showReviews(svg, d, blockGroup) {
     .map(Number);
 
   let isFixed = false; // 初始化为未固定状态
-  let previousEndY = blockY + 20; // 初始Y位置
+  let previousEndY = blockY + 10; // 初始Y位置
 
   d.reviews.forEach((review, i) => {
     // 计算文本高度
@@ -222,20 +222,26 @@ function showReviews(svg, d, blockGroup) {
 
     wrapText(tempText, 130);
 
+    const numberOfLines = tempText.attr("data-lines");
+    console.log("Number of lines:", numberOfLines); // 可以在這裡讀取確切的行數
+
     const bbox = tempText.node().getBBox();
-    console.log("我要知道的東西", bbox.height - 10);
-    const textHeight = bbox.height - 10; // 加上適當的 padding
+    const textHeight = bbox.height + 10; // 加上適當的 padding
     tempText.remove();
 
+    console.log("bbox", bbox);
     // 根據文本高度調整區塊高度
-    const blockHeight = Math.min(Math.max(textHeight, 40), 90); // 設置最小高度為 40，最大高度為 90
+    const blockHeight = Math.max(textHeight - numberOfLines*6, 45); // 設置最小高度為 45，避免過小
     const startX = translateX - 50 + blockWidth;
     const startY = translateY + 15; //線連在同一個點上
     const endX = blockX + 120;
-    const endY = previousEndY + i * 3; // 更新endY位置
+    // const endY = previousEndY; // 更新endY位置
+    // const endY = blockY + i * 50 + 35; // 調整間距以容納評論細節
+    const endY = previousEndY; // 更新endY位置
 
     // 更新下一個區塊的起始位置
     previousEndY += blockHeight + 5; // 20 是區塊之間的間距
+    // previousEndY += blockHeight * 5 + 50; // 20 是區塊之間的間距
 
     // 繪製非直線曲線並添加動畫效果
     svg
@@ -467,7 +473,11 @@ function wrapText(text, width) {
         .attr("y", y)
         .attr("dy", dy + "em");
 
+    // 確保行數的計算正確
+    let numberOfLines = 1; // 初始化為 1 行
+
     while ((word = words.pop())) {
+      // console.log(word); // 輸出每個字符以檢查
       line.push(word);
       tspan.text(line.join(" "));
       if (tspan.node().getComputedTextLength() > width) {
@@ -480,7 +490,10 @@ function wrapText(text, width) {
           .attr("y", y)
           .attr("dy", ++lineNumber * lineHeight + dy + "em")
           .text(word);
+        numberOfLines++; // 每次換行時增加行數
       }
     }
+    // 將確切行數添加到當前的文本元素作為屬性
+    text.attr("data-lines", numberOfLines); // 這樣可以在其他地方讀取行數
   });
 }

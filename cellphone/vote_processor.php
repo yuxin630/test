@@ -21,7 +21,7 @@ if (isset($_POST['votedRestaurants'])) {
         $r_id = intval($r_id); // 将r_id转换为整数，确保安全性
 
         // 获取餐厅名称
-        $r_name_query = "SELECT r_name FROM detail2 WHERE r_id = $r_id";
+        $r_name_query = "SELECT r_name FROM detail WHERE r_id = $r_id";
         $r_name_result = mysqli_query($link, $r_name_query);
         
         if ($r_name_result && mysqli_num_rows($r_name_result) > 0) {

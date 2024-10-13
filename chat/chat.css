@@ -48,7 +48,9 @@
 }
 
 .comment-form button {
-    padding: 10px 20px;
+    padding: 5px 8px;
+    margin-top: .5rem;
+    font-size: .8rem;
     background-color: #4CAF50;
     color: white;
     border: none;

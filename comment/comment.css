@@ -14,7 +14,7 @@
 }
 
 .block {
-    background-color: #F8EDE3;
+    background-color: #c3d4cc;
     border-radius: 15px;
     text-align: center;
     transition: fill 0.3s ease;
@@ -25,3 +25,8 @@
     transition: fill 0.3s ease;
     font-size: 14px;
 }
+
+text {
+    letter-spacing: -1px;  /* 減少字母間距 */
+    line-height: 1.3em;  /* 調整行距 */
+  }

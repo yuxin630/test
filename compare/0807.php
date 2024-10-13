@@ -130,19 +130,12 @@ if ($link) {
                 // 餐廳名稱和投票次數部分
                 echo "<div class='restaurant-container' style='background-color: {$backgroundColor}; padding: 10px; border-radius: 10px; margin-right: 10px; display: inline-block; width: 200px;'>"; // 整個區塊背景和設計
                 echo "<div style='display: flex; align-items: center;'>"; // 使用flex排列名稱和勾選框
-                echo "<input type='checkbox' class='restaurant-checkbox' data-id='{$r_id}' style='margin-right: 10px; cursor: pointer; width: 20px; height: 20px;' onchange='handleCheckboxChange(this)'>";
-                echo "<div style='cursor: default;'>" . htmlspecialchars($restaurant_data['r_name']) . "</div>"; // 餐廳名稱在勾選框右邊
+                echo "<input type='checkbox' class='restaurant-checkbox' data-id='{$r_id}' style='margin-right: 10px; cursor: pointer; width: 18px; height: 18px;' onchange='handleCheckboxChange(this)'>";
+                echo "<div style='cursor: default; font-weight:bold;'>" . htmlspecialchars($restaurant_data['r_name']) . "</div>"; // 餐廳名稱在勾選框右邊
                 echo "</div>";
                 // 投票次數換行顯示
-                echo "<div style='cursor: default;'>投票次數: " . htmlspecialchars($vote_count) . "</div>";
+                echo "<div style='cursor: default; right:0'>投票次數: " . htmlspecialchars($vote_count) . "</div>";
                 echo "</div>";
-
-
-                // 顯示投票數，移動到餐廳名稱的下方
-                //$vote_count = isset($restaurant_data['vote']) ? $restaurant_data['vote'] : 0;
-                //echo "<div class='vote-count' style='cursor: default; margin-top: 5px;'>投票數: " . htmlspecialchars($vote_count) . "</div>";
-                // $vote_count = isset($restaurant_data['vote']) ? $restaurant_data['vote'] : 0;
-                // echo "<div class='vote-count' style='cursor: default; margin-top: 5px;'>投票數: " . htmlspecialchars($vote_count) . "</div>";
 
                 // 更新計數器
                 $counter++;
@@ -363,7 +356,7 @@ if ($link) {
         // 構建SQL查詢
         if (!empty($r_ids)) {
             $ids = implode("','", $r_ids); // 將數組中的ID轉換為SQL字符串格式
-            $sql = "SELECT * FROM detail2 WHERE r_id IN ('$ids')";
+            $sql = "SELECT * FROM detail WHERE r_id IN ('$ids')";
 
             $result = $conn->query($sql);
 

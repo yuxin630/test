@@ -104,7 +104,7 @@ function initializeReviews(reviewData) {
         .attr("y", bbox.y - 5) // 調整 rect 的 y 位置
         .attr("rx", 15) // 設置圓角
         .attr("ry", 15)
-        .attr("fill", "#f3f3f3"); // 預設背景顏色
+        .attr("fill", "#F8EDE3"); // 預設背景顏色
     });
 
   // 預設顯示第一個類別（食物）的總評和評論細節
@@ -115,12 +115,12 @@ function initializeReviews(reviewData) {
 
 // 點擊按鈕後處理顯示評論的函數
 function handleButtonClick(button, svg, category, blockWidth) {
-  d3.selectAll(".block-group").select("rect").attr("fill", "#c3d4cc"); // 恢復預設背景顏色
+  d3.selectAll(".block-group").select("rect").attr("fill", "#F8EDE3"); // 恢復預設背景顏色
   d3.selectAll(".block-group").select("text").attr("fill", "black").attr("font-weight", "normal");
 
   // 選中當前的總評並改變顏色
-  d3.select(button).select("rect").attr("fill", "rgb(148, 168, 158)"); // 選中總評變為亮色
-  d3.select(button).select("text").attr("fill", "black").attr("font-weight", "bold");
+  d3.select(button).select("rect").attr("fill", "#FFD700"); // 選中總評變為亮色
+  d3.select(button).select("text").attr("fill", "white").attr("font-weight", "bold");
 
   showReviews(svg, category, button, blockWidth); // 顯示評論
 }
@@ -130,7 +130,7 @@ function showReviews(svg, d, blockGroup, blockWidth) {
   svg.selectAll(".review-group").remove();
 
   let previousEndY = 60; // 初始化Y位置，確保從適當位置開始，調整為 50px 向下移動 10px
-  const colors = ["#ffc6df", "#acccff", "#ffeab0"]; // 顏色陣列
+  const colors = ["#FF70AE", "#85B4FF", "#FFCE47"]; // 顏色陣列
   const fixedXPosition = 20; // 固定左邊距離，確保所有評論位置一致
 
   d.reviews.forEach((review, i) => {

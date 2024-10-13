@@ -1,6 +1,6 @@
 function drawMinimap(intervalPositions, totalHeight, intervalWidths, intervals, sortedTimes, data, currentIntervals) {
     const minimapWidth = 200;
-    const minimapHeight = 100;
+    const minimapHeight = 85;
 
     const scaleX = d3.scaleBand()
         .domain(intervals)
@@ -42,7 +42,8 @@ function drawMinimap(intervalPositions, totalHeight, intervalWidths, intervals, 
 
     const colors = d3.scaleOrdinal()
         .domain(sortedTimes)  // 確保 domain 包含所有 time 值
-        .range(['#F3BEBE', '#FFD8B6', '#A8D6A8', '#ADD8E6', '#80B1D3', '#B48CC8']); // 使用自定義顏色範圍
+        .range(['#d6af99', '#a2cdab', '#7ea1dd', '#fdc85e', '#e67575', '#b295ab']);
+        // .range(['#F3BEBE', '#FFD8B6', '#A8D6A8', '#ADD8E6', '#80B1D3', '#B48CC8']); // 使用自定義顏色範圍
 
     stackedData.reverse().forEach((layer, layerIndex) => {
         d3.select("#minimap").selectAll(`.bar-${layer.key}`)

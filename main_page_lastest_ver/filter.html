@@ -224,9 +224,9 @@
                 .append("text")
                 .attr("x", 10)
                 .attr("y", (d, i) => i * 20 + 20)
-                .text(d => d.r_name)
-                .style("font-size", "14px")
-                .style("fill", "black");
+                // .text(d => d.r_name)
+                // .style("font-size", "14px")
+                // .style("fill", "black");
         }).catch(function(error) {
             console.error('Error fetching data:', error);
         });

@@ -266,14 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
         slideMin();
         slideMax();
     
-        // 重置时间过滤器到默认状态
-        // minTimeVal.value = minTimeVal.min;
-        // maxTimeVal.value = maxTimeVal.max;
-        // timeInputMin.value = minTimeVal.min;
-        // timeInputMax.value = maxTimeVal.max;
-        // slideTimeMin();
-        // slideTimeMax();
-        // 重置 selectedTimes 并选中所有时间按钮
+
         selectedTimes = [];  // 清空数组，确保重新选择
         timeButtons.forEach(button => {
             const timeValue = button.innerText.trim();
@@ -282,13 +275,21 @@ document.addEventListener('DOMContentLoaded', function () {
             button.classList.add('active'); 
         });
     
-        // 取消所有选中的气氛按钮
-        vibeButtons.forEach(button => {
+        // 取消氣氛
+        selectedButtons.forEach(button => {
+            const colorClass = colors.find(color => button.classList.contains(color));
+            if (colorClass) {
+                availableColors.push(colorClass);
+            }
             button.classList.remove('selected');
-            // 重置按钮颜色等其他状态
+    
+            // 重置顏色
+            colors.forEach(color => button.classList.remove(color));
         });
-       selectedButtons = [];
-       availableColors = [...colors];
+    
+        // 清空已選按鈕並重置 availableColors
+        selectedButtons = [];
+        availableColors = [...colors];
 
         // 取消星星的勾选
         items.forEach(item => {
@@ -313,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function fetchAllRestaurantIds() {
         // 不传递任何筛选条件，获取所有餐厅
         // 檢查 fetch 回傳的資料
-        fetch('http://localhost/foodee/data.php?')
+        fetch('./data.php?')
             .then(response => response.json())
             .then(data => {
                 console.log("Fetched data:", data);  // 輸出資料，檢查是否正確
@@ -415,7 +416,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let filteredIds = restaurantIds; // 使用 restaurantIds 进行过滤
 
-        let url = 'http://localhost/foodee/data.php?';
+        let url = './data.php?';
 
         // 如果有选中的时间限制，加入 URL 参数
         if (selectedTimesQuery) {
@@ -646,14 +647,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-
-    // 當「無限制」按鈕被點擊時
-    // noLimitBtn.addEventListener('click', function () {
-    //     isNoLimitActive = !isNoLimitActive;
-    //     noLimitBtn.classList.toggle('active', isNoLimitActive);
-    //     filterItemTime.style.opacity = 1;
-    //     applyFilters();
-    // });
 
     function updateTimeSliders() {
         minTimeSlider.value = parseInt(minTimeInput.value, 10);

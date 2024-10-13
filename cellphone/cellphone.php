@@ -26,7 +26,7 @@ if ($link) {
             $restaurant_ids[] = $r_id;
             $r_ids[] = $r_id;
 
-            $query_name = "SELECT r_name FROM detail2 WHERE r_id = $r_id";
+            $query_name = "SELECT r_name FROM detail WHERE r_id = $r_id";
             $result_name = mysqli_query($link, $query_name);
 
             if ($result_name) {
@@ -133,9 +133,9 @@ function renderTags($items, $selectedItems, $r_id, $delimiter) {
 
             echo "<div class='button-container'>";
             $colors = [
-                "rgba(255, 112, 174, 0.2)",  // #FF70AE with 50% opacity
-                "rgba(133, 180, 255, 0.2)",  // #85B4FF with 50% opacity
-                "rgba(255, 206, 71, 0.2)"    // #FFCE47 with 50% opacity
+                "#ffc6df86",  // #FF70AE with 50% opacity
+                "#acccff8c",  // #85B4FF with 50% opacity
+                "#ffeab089"    // #FFCE47 with 50% opacity
             ];
             $index = 0;
             
@@ -291,7 +291,7 @@ function renderTags($items, $selectedItems, $r_id, $delimiter) {
         // 構建SQL查詢
         if (!empty($r_ids)) {
             $ids = implode("','", $r_ids); // 將數組中的ID轉換為SQL字符串格式
-            $sql = "SELECT * FROM detail2 WHERE r_id IN ('$ids')";
+            $sql = "SELECT * FROM detail WHERE r_id IN ('$ids')";
 
             $result = $conn->query($sql);
 
@@ -396,9 +396,9 @@ function renderTags($items, $selectedItems, $r_id, $delimiter) {
                 if (!empty($restaurant_names)) {
                     echo "<div class='vote-button'>";
                     $colors = [
-                        "rgba(255, 112, 174, 0.2)",  // #FF70AE with 20% opacity
-                        "rgba(133, 180, 255, 0.2)",  // #85B4FF with 20% opacity
-                        "rgba(255, 206, 71, 0.2)"    // #FFCE47 with 20% opacity
+                        "#ffc6dfef",  // #FF70AE with 50% opacity
+                        "#acccffea",  // #85B4FF with 50% opacity
+                        "#ffeab0ee"    // #FFCE47 with 20% opacity
                     ];
                     $index = 0;
 
@@ -418,7 +418,7 @@ function renderTags($items, $selectedItems, $r_id, $delimiter) {
 
                 <form id="voteForm">
                     <input type="hidden" id="votedRestaurants" name="votedRestaurants" value="">
-                    <button type="button" style="width: auto;" onclick="submitVote()">投票</button>
+                    <button type="button" style="width: auto; border:none;" onclick="submitVote()">投票</button>
                 </form>
                 <div id="voteMessage"></div> <!-- 显示确认信息 -->
             </div>
@@ -453,7 +453,7 @@ function renderTags($items, $selectedItems, $r_id, $delimiter) {
             } else {
                 button.setAttribute('data-selected', 'true');
                 button.setAttribute('data-initial-color', button.style.backgroundColor);
-                button.style.backgroundColor = 'rgba(255, 255, 0, 0.7)';
+                button.style.backgroundColor = 'rgb(247, 215, 70,.8)';
                 addRestaurantToVote(r_id);
             }
         }
@@ -588,25 +588,25 @@ function renderTags($items, $selectedItems, $r_id, $delimiter) {
 
                 // 高亮图表背景
                 if (receivedSpider[currentRestaurantId]) {
-                    document.querySelector('.middle-section1').style.backgroundColor = 'rgba(255, 248, 158, 0.5)';
+                    document.querySelector('.middle-section1').style.backgroundColor = '#f3f3f3';
                 }
                 if (receivedComment[currentRestaurantId]) {
-                    document.querySelector('.upper-section').style.backgroundColor = 'rgba(255, 248, 158, 0.5)';
+                    document.querySelector('.upper-section').style.backgroundColor = '#f3f3f3';
                 }
                 if (receivedOpenTime[currentRestaurantId]) {
-                    document.querySelector('.middle-section2').style.backgroundColor = 'rgba(255, 248, 158, 0.5)';
+                    document.querySelector('.middle-section2').style.backgroundColor = '#f3f3f3';
                 }
             }
 
             // 檢查傳過來的變數 spider 是否為 true，並亮起 middle-section1 背景
             if (receivedSpider === true) {
-                document.querySelector('.middle-section1').style.backgroundColor = 'rgba(255, 248, 158, 0.5)';
+                document.querySelector('.middle-section1').style.backgroundColor = '#f3f3f3';
             }
             if (receivedComment === true) {
-                document.querySelector('.upper-section').style.backgroundColor = 'rgba(255, 248, 158, 0.5)';
+                document.querySelector('.upper-section').style.backgroundColor = '#f3f3f3';
             }
             if (receivedOpenTime === true) {
-                document.querySelector('.middle-section2').style.backgroundColor = 'rgba(255, 248, 158, 0.5)';
+                document.querySelector('.middle-section2').style.backgroundColor = '#f3f3f3';
             }
 
             highlightTagsBasedOnReceivedData();

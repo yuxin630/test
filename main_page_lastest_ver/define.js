@@ -11,7 +11,7 @@ function categorizePrice(price) {
 // 依照餐廳數計算區間寬度
 function getCurrentIntervalTotals(intervals, circleRadius, data, width, margin, intervalWidths) {
     const intervalTotals = {};
-    const minWidth = circleRadius * 2; // 最小寬度為一個圓圈
+    const minWidth = circleRadius * 2 + 20; // 最小寬度為一個圓圈
 
     intervals.forEach(interval => {
         intervalTotals[interval] = d3.sum(data, d => categorizePrice(d.r_price_low) === interval);
@@ -172,7 +172,15 @@ function calculateSortedPositions(data, intervalWidths, rowHeight, rectSpacing, 
                     r_rating_food: restaurant.r_rating_food,// 添加食物评分
                     r_days: restaurant.r_hours_weekday,
                     r_atmosphere: restaurant.r_vibe,
-                    r_id: restaurant.r_id
+                    r_id: restaurant.r_id,
+                    r_price_high: restaurant.r_price_high,
+                    r_price_low: restaurant.r_price_low,
+                    r_rate_value: restaurant.r_rate_value,
+                    r_photo_food1: restaurant.r_photo_food1,
+                    r_photo_food2: restaurant.r_photo_food2,
+                    r_photo_food3: restaurant.r_photo_food3,
+                    r_photo_food4: restaurant.r_photo_food4,
+                    r_photo_food5: restaurant.r_photo_food5
                 });
 
 
@@ -314,10 +322,20 @@ function calculatePositions(data, intervalWidths, rowHeight, rectSpacing, margin
                     r_rate_clean: restaurant.r_rate_clean,    // 添加清潔度评分
                     r_rate_atmosphere: restaurant.r_rate_atmosphere,  // 添加氛圍评分
                     r_rate_service: restaurant.r_rate_service,  // 添加服务评分
-                    r_rating_food: restaurant.r_rating_food, // 添加食物评分
+                    r_rating_food: restaurant.r_rating_food,// 添加食物评分
                     r_days: restaurant.r_hours_weekday,
+                    r_hours_periods:restaurant.r_hours_periods,
                     r_atmosphere: restaurant.r_vibe,
-                    r_id: restaurant.r_id
+                    r_id: restaurant.r_id,
+                    r_price_high: restaurant.r_price_high,
+                    r_price_low: restaurant.r_price_low,
+                    r_rate_value: restaurant.r_rate_value,
+                    r_photo_food1: restaurant.r_photo_food1,
+                    r_photo_food2: restaurant.r_photo_food2,
+                    r_photo_food3: restaurant.r_photo_food3,
+                    r_photo_food4: restaurant.r_photo_food4,
+                    r_photo_food5: restaurant.r_photo_food5,
+                    r_photo_door: restaurant.r_photo_door
                 });
 
 
