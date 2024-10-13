@@ -277,11 +277,10 @@ svg{
     background-color: rgba(198, 198, 198, 0.5);
     display: flex;
     flex-wrap: nowrap;
-    margin: 0 5px 0 0;
     justify-content: space-between;
     position: fixed; /* 修改为fixed */
     bottom: 5; /* 固定在视窗底部 */
-    width: 330px;
+    width: 85%;
     align-items: center;
     justify-content: center;
     flex-direction: column-reverse;
