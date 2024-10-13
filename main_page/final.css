@@ -1,0 +1,139 @@
+.border {
+    stroke: black;
+    stroke-width: 1px;
+    fill: none;
+}
+
+.hidden {
+    display: none;
+}
+
+#chart {
+    padding-top: 10%;
+    /* 将主图表下移，避免与顶部的按钮和控制项重叠 */
+}
+
+.x-axis-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: white;
+}
+
+.top-container {
+    position: fixed;
+    left: 60%;
+    /* 将容器移到画面的中央 */
+    transform: translateX(-50%);
+    /* 确保容器的左边界与中央对齐 */
+    width: 60%;
+    /* 设置宽度为自适应内容 */
+    display: flex;
+    justify-content: center;
+    /* 让内部的按钮和minimap在水平上集中 */
+    z-index: 1000;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.jump-buttons {
+    display: flex;
+    align-items: center;
+    /* 确保按钮在容器内垂直居中 */
+    margin-right: 20px;
+}
+
+.jump-button {
+    margin: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    font-size: 12px;
+    width: auto;
+    /* 自动适应文字长度 */
+    height: auto;
+    /* 自动适应内容 */
+    writing-mode: horizontal-tb;
+    /* 保持文字水平显示 */
+}
+
+.control-buttons {
+    display: flex;
+    align-items: center;
+    /* 确保按钮在容器内垂直居中 */
+    margin-right: 20px;
+}
+
+#sort-button {
+    padding: 8px 20px;
+    cursor: pointer;
+    font-size: 12px;
+    background-color: #f0f0f0;
+    border: 1px solid #000;
+    border-radius: 5px;
+}
+
+.jump-buttons,
+.control-buttons,
+.minimap-container {
+    margin-left: 20px;
+    /* 为了不让它们紧贴在一起，增加左右间距 */
+    margin-right: 20px;
+}
+
+
+.minimap-container {
+    width: 200px;
+    height: 100px;
+    border: 1px solid #000;
+    background-color: #f9f9f9;
+}
+
+#tooltip {
+    width: auto;
+    max-width: 600px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+}
+
+#tooltip-content {
+    display: flex;
+    align-items: center;
+}
+
+#carousel {
+    margin-right: 10px;
+}
+
+#tooltip-title {
+    font-weight: bold;
+}
+
+#tooltip-ratings div {
+    display: flex;
+    align-items: center;
+
+}
+
+.arrow {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.arrow-left {
+    left: calc(20% - 30px);
+    /* 调整此值以将左箭头位置向右移动 */
+}
+
+.arrow-right {
+    right: 10px;
+    /* 让右箭头紧贴chart右侧 */
+}
