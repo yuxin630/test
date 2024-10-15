@@ -24,14 +24,16 @@ if ($link) {
     foreach ($r_ids as $r_id) {
         $query = "
             SELECT a.r_name, a.r_vibe, a.r_food_dishes, a.r_price_low, a.r_price_high, 
-                   a.r_photo_env1, a.r_photo_env2, a.r_photo_env3, 
-                   a.r_photo_food1, a.r_photo_food2, a.r_photo_food3, a.r_photo_food4, a.r_photo_food5, 
-                   a.r_photo_door, a.r_photo_menu1, a.r_photo_menu2, a.r_photo_menu3,
-                   a.special_comment_sum, a.notice_comment_sum, 
-                   v.vote
+                a.r_photo_env1, a.r_photo_env2, a.r_photo_env3, 
+                a.r_photo_food1, a.r_photo_food2, a.r_photo_food3, a.r_photo_food4, a.r_photo_food5, 
+                a.r_photo_door, a.r_photo_menu1, a.r_photo_menu2, a.r_photo_menu3,
+                a.special_comment_sum, a.notice_comment_sum, 
+                v.vote,d.r_website
             FROM additional a
             LEFT JOIN vote v ON a.r_id = v.r_id
+            LEFT JOIN detail d ON a.r_id = d.r_id
             WHERE a.r_id = $r_id";
+
 
         $result = mysqli_query($link, $query);
 
@@ -44,7 +46,7 @@ if ($link) {
         }
     }
 } else {
-    echo "Failed to connect to the database: " . mysqli_connect_error();
+        echo "Failed to connect to the database: " . mysqli_connect_error();
 }
 
 ?>
@@ -131,10 +133,10 @@ if ($link) {
                 echo "<div class='restaurant-container' style='background-color: {$backgroundColor}; padding: 10px; border-radius: 10px; display: flex; width: auto;justify-content: space-between;align-items: center;'>"; // 整個區塊背景和設計
                 echo "<div style='display: flex; align-items: center;'>"; // 使用flex排列名稱和勾選框
                 echo "<input type='checkbox' class='restaurant-checkbox' data-id='{$r_id}' style='margin-right: 10px; cursor: pointer; width: 18px; height: 18px;' onchange='handleCheckboxChange(this)'>";
-                echo "<div style='cursor: default; font-weight:bold;'>" . htmlspecialchars($restaurant_data['r_name']) . "</div>"; // 餐廳名稱在勾選框右邊
+                echo "<a href='" . htmlspecialchars($restaurant_data['r_website']) . "' target='_blank' style='cursor: pointer; font-weight:bold; color: black; text-decoration: underline;' onmouseover=\"this.style.color='#ffcc00';\" onmouseout=\"this.style.color='black';\">" . htmlspecialchars($restaurant_data['r_name']) . "</a>";
                 echo "</div>";
                 // 投票次數換行顯示
-                echo "<div style='cursor: default; right:0'>票數: " . htmlspecialchars($vote_count) . "</div>";
+                echo "<div style='background-color:#FFF;padding:2%;border-radius: 10px;cursor: default; right:0'>票數: " . htmlspecialchars($vote_count) . "</div>";
                 echo "</div>";
 
                 // 更新計數器
