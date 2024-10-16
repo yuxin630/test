@@ -1066,7 +1066,7 @@ if ($link) {
             console.log('Selected Restaurants:', selectedItems);
 
             // 重定向用户到生成的 URL
-            window.open(shareLink, '_blank');
+            //window.open(shareLink, '_blank');
         });
 
         function generateShareLink(selectedItems, selectedRestaurants) {
@@ -1074,7 +1074,6 @@ if ($link) {
 
             // 遍历所有被选中的餐厅
             selectedRestaurants.forEach((id, index) => {
-                // 将r_id也添加到查询字符串中
                 queryString += `r_id${index + 1}=${id}&`;
             });
 
@@ -1091,8 +1090,20 @@ if ($link) {
             // 将这些字符串合并到一个查询字符串中
             queryString += `${vibeString}&${foodString}&${priceString}&${diningTimeString}&${parkingString}&${spiderString}&${commentString}&${openTimeString}`;
 
+            // 输出完整的 URL
+            const fullURL = `../cellphone/cellphone.php?${queryString}`;
+            console.log(fullURL);  // 输出到控制台
+
+            // 弹出窗口显示 URL 并确认是否打开新窗口
+            const confirmOpen = confirm(`生成的分享連結：\n${fullURL}\n是否要在新視窗打開此連結？`);
+
+            // 如果用户确认，打开新窗口
+            if (confirmOpen) {
+                window.open(fullURL, '_blank');
+            }
+
             // 返回完整的 URL
-            return `../cellphone/cellphone.php?${queryString}`;
+            return fullURL;
         }
 
         function updateImage(category, restaurantData, index) {
