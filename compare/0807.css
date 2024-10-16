@@ -730,4 +730,21 @@ button {
 }
 .modal-content{
     background-color: #ccc;
+    padding: 10px;
+    border-radius: 10px
+}
+#closeBtn{
+    font-weight: bolder;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    background: grey;
+}
+#copyBtn{
+    background: white;
+    border-radius: 5px;
+}
+#openBtn{
+    background: white;
+    border-radius: 5px;
 }

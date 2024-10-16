@@ -465,10 +465,10 @@ if ($link) {
     </div>
     <div id="shareModal" class="modal" style="display: none;">
         <div class="modal-content">
-            <span id="closeBtn">&times;</span>
+            <span id="closeBtn" style="cursor: default;" onmouseover="this.style.cursor='pointer';">&times;</span>
             <p id="shareLink"></p>
-            <button id="copyBtn">复制链接</button>
-            <button id="openBtn">在新窗口打开</button>
+            <button id="copyBtn">複製連結</button>
+            <button id="openBtn">在新視窗打開</button>
         </div>
     </div>
 
@@ -1117,9 +1117,9 @@ if ($link) {
             // 复制链接到剪贴板
             document.getElementById("copyBtn").onclick = function() {
                 navigator.clipboard.writeText(fullURL).then(function() {
-                    alert("链接已复制！");
+                    alert("連結已複製！");
                 }, function() {
-                    alert("复制失败！");
+                    alert("複製失败！");
                 });
             };
 
