@@ -728,4 +728,6 @@ button {
     display: flex;
     justify-content: flex-end;
 }
-
+.modal-content{
+    background-color: #ccc;
+}
